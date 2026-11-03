@@ -1,23 +1,23 @@
 {
-	"name": "makefiles-runner",
-	"displayName": "Makefiles Runner",
+	"name": "makefiles-runner-derdere-fork",
+	"displayName": "Makefiles Runner - derDere Fork",
 	"description": "Make runner for VsCode. Simplify your development by easily running your makefiles commands directly from your IDE interface. ",
-	"version": "3.0.0",
-	"publisher": "akecel",
+	"version": "3.1.0",
+	"publisher": "derdere",
 	"engines": {
 		"vscode": "^1.50.0"
 	},
 	"categories": [
 		"Other"
 	],
-	"homepage": "https://marketplace.visualstudio.com/items?itemName=akecel.makefiles-runner",
+	"homepage": "https://marketplace.visualstudio.com/items?itemName=derdere.makefiles-runner-derdere-fork",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Akecel/makefiles-runner.git"
+		"url": "https://github.com/derDere/makefiles-runner.git"
 	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Akecel/makefiles-runner/issues"
+		"url": "https://github.com/derDere/makefiles-runner/issues"
 	},
 	"activationEvents": [
 		"onView:makefiles-runner",

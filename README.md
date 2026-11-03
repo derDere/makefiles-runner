@@ -1,6 +1,8 @@
-# Makefiles-Runner for VsCode
+# Makefiles Runner - derDere Fork
 
 >Make runner for VsCode. Simplify your development by easily running your makefiles commands directly from your IDE interface.
+
+This extension is a fork of [Makefiles Runner](https://github.com/Akecel/makefiles-runner) by Akecel. It lists every target the way GNU make reads it, shows `##` descriptions from above and behind a rule, adds icons to the commands and places run buttons above each rule in the editor.
 
 ## Usage
 
@@ -14,7 +16,7 @@ Makefile allows you to simply run your makefile commands from the side bar panel
 
 <br />
 
-<img src="https://raw.githubusercontent.com/Akecel/makefiles-runner/main/assets/doc/feature.gif" alt="Usage demo" />
+<img src="https://raw.githubusercontent.com/derDere/makefiles-runner/main/assets/doc/feature.gif" alt="Usage demo" />
 
 ### Listed commands
 
@@ -49,15 +51,16 @@ While the Makefile at the root of the workspace is open in the editor, a `▶ Ru
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/Akecel/makefiles-runner/tree/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/derDere/makefiles-runner/tree/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
-- [**Akecel**](https://github.com/Akecel) - *Extension author*
+- [**Akecel**](https://github.com/Akecel) - *Original extension author*
+- [**derDere**](https://github.com/derDere) - *Fork maintainer*
 
 ## Licence
 
-This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/makefiles-runner/blob/master/LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE](https://github.com/derDere/makefiles-runner/blob/main/LICENSE) file for details.
 
 ## Show your support
 

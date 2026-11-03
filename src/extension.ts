@@ -1,5 +1,6 @@
-import { commands, ExtensionContext, StatusBarAlignment, StatusBarItem, window, workspace } from "vscode";
-import { runMakeCommand } from "./command";
+import { commands, ExtensionContext, languages, StatusBarAlignment, StatusBarItem, window } from "vscode";
+import MakefileCodeLensProvider from "./codeLensProvider";
+import { RUN_MAKE_COMMAND_ID, runMakeCommand } from "./command";
 import TaskTreeDataProvider from "./provider";
 
 let statusBarItem: StatusBarItem | undefined;
@@ -7,8 +8,9 @@ const provider = new TaskTreeDataProvider();
 
 export const activate = async (context: ExtensionContext) => {
   context.subscriptions.push(
-    commands.registerCommand("extension.runMakeCommand", runMakeCommand()),
-    window.registerTreeDataProvider("makefiles-runner", provider)
+    commands.registerCommand(RUN_MAKE_COMMAND_ID, runMakeCommand()),
+    window.registerTreeDataProvider("makefiles-runner", provider),
+    languages.registerCodeLensProvider({ scheme: "file", language: "makefile" }, new MakefileCodeLensProvider())
   );
 
   if (await provider.makefileExists()) {// Create a status bar item (custom title bar)

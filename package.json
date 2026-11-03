@@ -20,7 +20,8 @@
 		"url": "https://github.com/Akecel/makefiles-runner/issues"
 	},
 	"activationEvents": [
-		"onView:makefiles-runner"
+		"onView:makefiles-runner",
+		"onLanguage:makefile"
 	],
 	"icon": "icon.png",
 	"main": "./out/extension.js",
@@ -55,6 +56,14 @@
 					"type": "boolean",
 					"default": false,
 					"description": "When true reuses the first terminal with a matching command label, defaults to false.  Overrides alwaysCreateNewTerminal if both set true, so new terminals will only be created when running a command with no matching terminal."
+				},
+				"makefilesRunner.icons": {
+					"type": "object",
+					"default": {},
+					"additionalProperties": {
+						"type": "string"
+					},
+					"markdownDescription": "Assigns [codicons](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing) to makefile commands in the panel, e.g. `{ \"record-fixture\": \"record\" }`. A key matches a command with the same name or a command starting with the key followed by `-` or `_` (`test` matches `test-live`). Entries extend and override the built-in mapping (start → play, build → tools, test → beaker, install → cloud-download, clean → trash, …). Commands without a match show the `terminal` icon."
 				}
 			}
 		}

@@ -6,6 +6,8 @@ export interface ExtensionConfig {
     displayDescriptionCommentsInPanel: boolean;
     alwaysCreateNewTerminal: boolean;
     reuseMatchingTerminal: boolean;
+    /** Zuordnung von Target-Namen bzw. -Präfixen zu Codicon-IDs aus der Einstellung `icons`. */
+    icons: Readonly<Record<string, unknown>>;
 }
 
 export class ConfigService {
@@ -32,7 +34,8 @@ export class ConfigService {
             sortAlphabetically: config.get<boolean>('sortAlphabetically', false),
             displayDescriptionCommentsInPanel: config.get<boolean>('displayDescriptionCommentsInPanel', true),
             alwaysCreateNewTerminal: config.get<boolean>('alwaysCreateNewTerminal', false),
-            reuseMatchingTerminal: config.get<boolean>('reuseMatchingTerminal', false)
+            reuseMatchingTerminal: config.get<boolean>('reuseMatchingTerminal', false),
+            icons: config.get<Record<string, unknown>>('icons', {})
         };
     }
 
@@ -57,5 +60,9 @@ export class ConfigService {
 
     public get reuseMatchingTerminal(): boolean {
         return this.config.reuseMatchingTerminal;
+    }
+
+    public get icons(): Readonly<Record<string, unknown>> {
+        return this.config.icons;
     }
 }

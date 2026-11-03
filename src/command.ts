@@ -2,6 +2,9 @@ import { workspace, window, Terminal } from "vscode";
 import { createNewTerminal, ensureTerminalExists, selectTerminal } from "./terminal";
 import { ConfigService } from './configService';
 
+/** ID des Befehls, der ein Make-Target im Terminal ausführt; Argument ist der Target-Name. */
+export const RUN_MAKE_COMMAND_ID = "extension.runMakeCommand";
+
 export const runMakeCommand = () => async (argument: string) => {
   if (workspace.workspaceFolders) {
     sendTextsToTerminal(argument, [

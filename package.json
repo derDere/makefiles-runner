@@ -10,7 +10,7 @@
 	"categories": [
 		"Other"
 	],
-	"homepage": "https://marketplace.visualstudio.com/items?itemName=derdere.makefiles-runner-derdere-fork",
+	"homepage": "https://github.com/derDere/makefiles-runner#readme",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/derDere/makefiles-runner.git"

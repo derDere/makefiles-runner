@@ -45,7 +45,7 @@
 				"makefilesRunner.displayDescriptionCommentsInPanel": {
 					"type": "boolean",
 					"default": true,
-					"description": "Optionally shows the convention-based comment about each command in the makefile as text next to each command in the panel, defaults to true.  Descriptions will be shown on-hover regardless of the value of this setting."
+					"description": "Shows the ## description of each command as text next to the command in the panel, defaults to true.  The tooltip shows the description regardless of this setting."
 				},
 				"makefilesRunner.alwaysCreateNewTerminal": {
 					"type": "boolean",

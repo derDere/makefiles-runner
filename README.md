@@ -6,21 +6,30 @@ This extension is a fork of [Makefiles Runner](https://github.com/Akecel/makefil
 
 ## Usage
 
-- Create your "Makefile" at the root of your project
-- Show the Makefiles-Runner panel
-- Run any command with one click 🚀
-  
-## Feature
+- Create your `Makefile` at the root of your project
+- Open the **Makefile Commands** view in the Explorer side bar
+- Run any command with one click 🚀 – from the view or from the run button above its rule in the editor
 
-Makefile allows you to simply run your makefile commands from the side bar panel.
+## Features
+
+Run your makefile commands from the side bar panel or straight from the Makefile in the editor.
 
 <br />
 
-<img src="https://raw.githubusercontent.com/derDere/makefiles-runner/main/assets/doc/feature.gif" alt="Usage demo" />
+<img src="https://raw.githubusercontent.com/derDere/makefiles-runner/main/assets/doc/overview.png" alt="Makefile commands panel with icons and descriptions next to a Makefile with run buttons" />
 
 ### Listed commands
 
-The panel lists the targets the way GNU make reads them: every name left of the rule colon is a command, with or without prerequisites (`build: install`). Variable assignments, special targets such as `.PHONY`, pattern rules (`%.o: %.c`) and targets built from variables (`$(OUT):`) stay out of the list.
+The panel lists the targets the way GNU make reads them: every name left of the rule colon is a command, with or without prerequisites (`build: install`). A rule with several targets (`lint format: deps`) lists each of them, and a target defined by several rules appears once.
+
+These lines stay out of the list:
+
+- variable assignments (`APP := demo`, `CFLAGS += -O2`) and target-specific variables (`build: CFLAGS = -O2`)
+- special targets such as `.PHONY` and suffix rules such as `.c.o:`
+- pattern rules (`%.o: %.c`) and targets built from variables (`$(OUT):`)
+- recipe lines, directives (`include`, `ifeq`, `export` …) and the content of `define` blocks
+
+The extension reads the file named `Makefile` in the root of the first workspace folder; rules in files pulled in with `include` stay out of the list. After editing the Makefile, the **Re-read Makefile** button in the status bar refreshes the panel.
 
 ### Command descriptions
 
@@ -31,20 +40,48 @@ Comments starting with `##` describe a command. They stand on the lines directly
 build: install ## Requires the installed dependencies.
 ```
 
-Consecutive `##` lines are joined into one description; a blank line or any other line ends the block. The description appears next to the command in the panel and as its tooltip.
+Consecutive `##` lines are joined into one description; a blank line or any other line ends the block. Comments with a single `#` are regular comments and stay out of the description. When a rule lists several targets, each of them gets the description. The description appears next to the command in the panel and as its tooltip.
 
 ### Icons
 
-Every command shows a [codicon](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing) that matches its name, e.g. `start` → play, `build` → tools, `test` → beaker, `install` → cloud-download, `clean` → trash. A name also matches when it starts with the key followed by `-` or `_`, so `test-live` shows the test icon. The `icons` setting adds and overrides entries.
+Every command shows a [codicon](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing) that matches its name:
+
+| Icon | Command names |
+| --- | --- |
+| `play` | start, run, up, serve, dev |
+| `debug-stop` | stop, down |
+| `debug-alt` | debug |
+| `cloud-download` | install, restore, deps, pull |
+| `tools` | build, compile |
+| `beaker` | test |
+| `trash` | clean, clear |
+| `checklist` | lint, format |
+| `rocket` | deploy, release, publish |
+| `output` | logs |
+| `database` | seed, init |
+| `terminal` | every other command |
+
+A name also matches when it starts with the key followed by `-` or `_`, so `test-live` and `test_unit` show the test icon; letter case does not matter. The `icons` setting adds and overrides entries:
+
+```json
+"makefilesRunner.icons": {
+  "record-fixture": "record",
+  "build": "package"
+}
+```
+
+<img src="https://raw.githubusercontent.com/derDere/makefiles-runner/main/assets/doc/panel.png" alt="Makefile commands panel with icons and descriptions" />
 
 ### Run buttons in the editor
 
-While the Makefile at the root of the workspace is open in the editor, a `▶ Run make <target>` button stands above each rule and runs the command like a click in the panel.
+While the Makefile at the root of the workspace is open in the editor, a `▶ Run make <target>` button stands above each rule and runs the command like a click in the panel. The buttons follow the file as you edit it.
+
+<img src="https://raw.githubusercontent.com/derDere/makefiles-runner/main/assets/doc/run-buttons.png" alt="Run buttons above the rules of a Makefile" />
 
 ## Extension Settings
 
 - `sortAlphabetically`: Sorts the makefile commands shown in the panel in alphabetical order, defaults to false.  When disabled, commands are shown in the same order as they appear within the makefile itself.
-- `displayDescriptionCommentsInPanel"`: Optionally shows the convention-based comment about each command in the makefile as text next to each command in the panel, defaults to true.  Descriptions will be shown on-hover regardless of the value of this setting.
+- `displayDescriptionCommentsInPanel`: Shows the `##` description of each command as text next to the command in the panel, defaults to true.  The tooltip shows the description regardless of this setting.
 - `alwaysCreateNewTerminal`: Creates a new terminal rather than reusing an existing one when set true, defaults to false.
 - `reuseMatchingTerminal`: Reuses the first terminal with a matching command label when set true, defaults to false.  Overrides alwaysCreateNewTerminal if both set true, so new terminals will only be created when running a command with no matching terminal.
 - `icons`: Assigns codicon ids to commands, e.g. `{ "record-fixture": "record" }`. Keys match a command with the same name or a command starting with the key followed by `-` or `_`; the longest matching key wins. Entries extend and override the built-in mapping, commands without a match show the `terminal` icon.
